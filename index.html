@@ -10,6 +10,16 @@
     <div class="container">
       <h1>Kalkulator BMI</h1>
       <h1><span>created by : Alif Athaullah Rasyad</span></h1>
+
+      <div class="ket">
+        <p><strong>
+          - >18,5 = Berat badan kurang  <br>
+          - 18,5–24,9       = Berat badan ideal <br>
+          - 25–29,9     &nbsp   = Berat badan Berlebih <br>
+          - 30+ atau lebih  = Obesitas 
+        </strong></p>
+      </div>
+
       <form id="bmiForm">
         <label for="weight">Berat Badan (kg):</label>
         <input type="number" id="weight" name="weight" /><br /><br />
@@ -18,65 +28,56 @@
         <button type="button" id="calculate">Hitung BMI</button><br /><br />
         <div id="result">Hasil:</div>
       </form>
-      <div class="reset"> <button id="reset">Reset</button></div>
+      <div class="reset"><button id="reset">Reset</button></div>
     </div>
 
     <script>
-    const inputBB = document.getElementById("weight");
-    const inputTB = document.getElementById("height");
-    const hitung = document.getElementById("calculate");
-    const hasil = document.getElementById("result");
+      const inputBB = document.getElementById("weight");
+      const inputTB = document.getElementById("height");
+      const hitung = document.getElementById("calculate");
+      const hasil = document.getElementById("result");
 
-    function menghitung() {
+      function menghitung() {
         let beratB = parseFloat(inputBB.value);
         let tinggiB = parseFloat(inputTB.value) / 100;
-        if(isNaN(beratB)  && isNaN(tinggiB)) {
-       hasil.textContent = "BMI tidak valid";
-        }
-        else if (beratB != 0 && tinggiB != 0) {
+        if (isNaN(beratB) && isNaN(tinggiB)) {
+          hasil.textContent = "BMI tidak valid";
+        } else if (beratB != 0 && tinggiB != 0) {
           hasilUkur = beratB / (tinggiB * tinggiB);
-        let keterangan= ""
-            if(hasilUkur < 18.5){
-        keterangan = "( Berat Badan Kurang )"
-        } 
-        else if ( hasilUkur >=18.5 && hasilUkur <=24.9){
-            keterangan = "( Berat badan ideal )"
-        } 
-        else if( hasilUkur >= 25 && hasilUkur <= 29.9){
-            keterangan = "( Berat badan Berlebih )"
-        } 
-        else if (hasilUkur >=30){
-            keterangan = "( Anda Obestitas. Berolahragalah!)"
+          let keterangan = "";
+          if (hasilUkur < 18.5) {
+            keterangan = "( Berat Badan Kurang )";
+          } else if (hasilUkur >= 18.5 && hasilUkur <= 24.9) {
+            keterangan = "( Berat badan ideal )";
+          } else if (hasilUkur >= 25 && hasilUkur <= 29.9) {
+            keterangan = "( Berat badan Berlebih )";
+          } else if (hasilUkur >= 30) {
+            keterangan = "( Anda Obestitas. Berolahragalah!)";
+          } else {
+            keterangan = "";
+          }
+          hasil.textContent =
+            "Hasil :" + Math.round(hasilUkur) + " " + keterangan;
         }
-        else{
-            keterangan =""
-        }
-        hasil.textContent = "Hasil :" + Math.round(hasilUkur) +" "+ keterangan;
-        
-    
-        
-        }
-        console.log(beratB)
-        console.log(tinggiB)
-        console.log(hasilUkur)
-    }
+        console.log(beratB);
+        console.log(tinggiB);
+        console.log(hasilUkur);
+      }
 
-    hitung.addEventListener("click", menghitung);
-    document.addEventListener("keydown", function (){
+      hitung.addEventListener("click", menghitung);
+      document.addEventListener("keydown", function () {
         if (event.key === "Enter") {
-            menghitung();
+          menghitung();
         }
-    });
+      });
 
-    function reset(){
-        inputBB.value = ""
-        inputTB.value = ""
-        hasil.textContent = "Hasil :"
-    }
-    const resetButton = document.getElementById('reset')
-    resetButton.addEventListener("click", reset)
-
-    
+      function reset() {
+        inputBB.value = "";
+        inputTB.value = "";
+        hasil.textContent = "Hasil :";
+      }
+      const resetButton = document.getElementById("reset");
+      resetButton.addEventListener("click", reset);
     </script>
-</body>
+  </body>
 </html>
